@@ -14,7 +14,40 @@
     <v-spacer></v-spacer>
 
     <router-link :to="{ name: 'Cart' }">
-      <v-icon>mdi-cart-outline</v-icon>
+      <v-icon>mdi-cart-outline</v-icon> -
+      <span style="color: white">{{ cartItemsCount }}</span>
     </router-link>
   </v-app-bar>
 </template>
+
+<script>
+import CartService from "@/services/CartService.js";
+// import Observable from "rxjs";
+export default {
+  data() {
+    return {
+      cartItemsCount: 0,
+    };
+  },
+  methods: {},
+  created() {
+    // console.log(CartService.cartItems.subscribe())
+    //CartService.getCartData();
+    CartService.cartItems.subscribe((data) => {
+      if (data) {
+        this.cartItemsCount = data.length;
+      }
+    });
+    if (CartService.getCartData()) {
+      this.cartItemsCount = CartService.getCartData().length;
+    }
+  },
+  // updated () {
+  //   // console.log(CartService.cartItems.subscribe())
+  //    CartService.cartItems.subscribe(data => {
+  //     //  console.log(data.length)
+  //      this.cartItemsCount = data.length;
+  //    })
+  // }
+};
+</script>

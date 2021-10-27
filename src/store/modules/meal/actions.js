@@ -9,6 +9,7 @@ export default {
           //   "SET_MEALS_TOTAL",
           //   parseInt(response.headers["x-total-count"])
           // );
+          //console.log(response)
           commit("SET_MEALS", response.data);
           resolve(response);
         })
@@ -47,6 +48,7 @@ export default {
           //   "SET_MEALS_TOTAL",
           //   parseInt(response.headers["x-total-count"])
           // );
+          console.log(response);
           commit("SET_MEALS", response.data);
           resolve(response);
         })

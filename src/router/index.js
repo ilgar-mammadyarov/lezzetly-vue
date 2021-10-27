@@ -7,6 +7,10 @@ import Checkout from "../views/Checkout.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 
+import CourierDashboard from "../views/Dashboard/courier/CourierDashboard.vue";
+import CookDashboard from "../views/Dashboard/cook/CookDashboard.vue";
+import ClientDashboard from "../views/Dashboard/client/ClientDashboard.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -46,7 +50,26 @@ const routes = [
     name: "Register",
     component: Register,
   },
+  {
+    path: "/cookdashboard",
+    name: "CookDashboard",
+    component: CookDashboard,
+  },
+  {
+    path: "/courierdashboard",
+    name: "CourierDashboard",
+    component: CourierDashboard,
+  },
+  {
+    path: "/clientdashboard",
+    name: "ClientDashboard",
+    component: ClientDashboard,
+  },
 ];
+
+// .then(() => {
+//   this.$router.push({name: dashboard})
+// })
 
 const router = new VueRouter({
   mode: "history",

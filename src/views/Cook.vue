@@ -30,7 +30,7 @@ export default {
       this.meals = this.meals.filter(
         (meal) => meal.cook.id == this.$route.params.id
       );
-      console.log(this.meals);
+      // console.log(this.meals);
     });
   },
   methods: {

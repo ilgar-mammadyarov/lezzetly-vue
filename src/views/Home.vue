@@ -101,10 +101,10 @@ export default {
       });
     },
     openModal(meal) {
-      console.log("hello");
+      // console.log("hello");
       this.dialog = true;
       this.selectedMeal = meal;
-      console.log(this.selectedMeal);
+      // console.log(this.selectedMeal);
     },
   },
 };

@@ -69,23 +69,28 @@
     </v-card-text> -->
 
       <v-card-actions>
-        <router-link :to="{ name: 'Cook', params: { id: meal.cook.id } }">
+        <router-link
+          style="text-decoration: none"
+          v-if="!this.$route.params.id"
+          :to="{ name: 'Cook', params: { id: meal.cook.id } }"
+        >
           <v-btn color="deep-purple lighten-2" text> View </v-btn>
         </router-link>
 
         <v-btn color="deep-purple lighten-2" text> Rate </v-btn>
-        <v-btn> </v-btn>
+        <v-btn
+          @click="addToCart(meal)"
+          v-if="this.$route.params.id"
+          color="deep-purple lighten-2"
+          text
+          >Add</v-btn
+        >
       </v-card-actions>
     </v-card>
 
     <!-- Modal section below -->
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="400">
-        <!-- <template v-slot:activator="{ on, attrs }">
-          <v-btn color="primary" dark v-bind="attrs" v-on="on">
-            Open Dialog
-          </v-btn>
-        </template> -->
         <v-card>
           <v-card-title class="text-h5">
             {{ meal.title }}
@@ -96,9 +101,6 @@
           <v-card-text>{{ meal.stock_quantity }}</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <!-- <v-btn color="green darken-1" text @click="dialog = false">
-              Disagree
-            </v-btn> -->
             <v-btn color="green darken-1" text @click="dialog = false">
               Close
             </v-btn>
@@ -110,6 +112,7 @@
 </template>
 
 <script>
+import CartService from "@/services/CartService.js";
 export default {
   props: {
     meal: Object,
@@ -121,17 +124,16 @@ export default {
   }),
 
   methods: {
-    // reserve() {
-    //   this.loading = true;
-
-    //   setTimeout(() => (this.loading = false), 2000);
-    // },
-    goToCook(id) {
-      console.log(id);
+    addToCart(meal) {
+      // console.log(meal)
+      CartService.addItem(meal);
     },
+    // goToCook(id) {
+    //   console.log(id);
+    // },
     openModal() {
       this.dialog = true;
-      console.log(this.meal);
+      // console.log(this.meal);
     },
   },
 };
